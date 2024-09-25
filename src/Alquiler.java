@@ -7,7 +7,7 @@ public class Alquiler implements Facturacion {
     public Alquiler(int numeroVehiculos) {
         char tipo;
         String matricula;
-        int dias, plazas;
+        int dias, plazas, tara, tonelada;
 
         Scanner input = new Scanner(System.in);
 
@@ -29,12 +29,24 @@ public class Alquiler implements Facturacion {
             System.out.println("Introduce las plazas");
             plazas = input.nextInt();
 
-            if (tipo == 'C') {
-                Coche c = new Coche(plazas, matricula, dias);
-                pedido.add(c);
-            } else {
+            System.out.println("Introduce la tara");
+            tara = input.nextInt();
+
+            System.out.println("Introduce las toneladas a transportar");
+            tonelada = input.nextInt();
+
+            if (tipo == 'A') {
+                Coche a = new Coche(plazas, matricula, dias);
+                pedido.add(a);
+            } else if (tipo == 'B') { 
                 Bus b = new Bus(plazas, matricula, dias);
                 pedido.add(b);
+            } else if (tipo == 'C'){
+                Camion c = new Camion(tonelada, tara, matricula, dias);
+                pedido.add(c);
+            } else if (tipo == 'F'){
+                Furgoneta f = new Furgoneta(tonelada, tara, matricula, dias);
+                pedido.add(f);
             }
         }
         input.close();
